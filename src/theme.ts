@@ -3,19 +3,19 @@ import { extendTheme } from "@chakra-ui/react";
 export default extendTheme({
   config: {
     initialColorMode: "dark",
-    useSystemColorMode: false,
+    // useSystemColorMode: false,
   },
 
   styles: {
     global: (props: any) => ({
       "html, body": {
-        // backgroundColor: props.colorMode === "dark" ? "teal.600" : "white",
+        backgroundColor: props.colorMode === "dark" ? "purple.900" : "#FFF8E8",
       },
     }),
   },
 
   fonts: {
-    body: "Nunito, sans-serif",
-    heading: "Nunito, sans-serif",
+    body: "Poppins, sans-serif",
+    heading: "Poppins, sans-serif",
   },
 });

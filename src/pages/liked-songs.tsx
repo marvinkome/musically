@@ -3,6 +3,7 @@ import { chakra, Container, Image, Heading, Stack, Text } from "@chakra-ui/react
 import { Navigation } from "components/navigation";
 import { PlaylistView } from "components/views/playlist";
 import { TrackView } from "components/views/track";
+import { ArtistView } from "components/views/artist";
 
 const Page = () => {
   return (
@@ -20,15 +21,16 @@ const Page = () => {
       <Navigation />
 
       <Stack spacing={6} mt={14} direction="row" alignItems="flex-start">
-        <Stack flex={2} spacing={6}>
+        <Stack flex={3} spacing={6}>
           <PlaylistView />
           <TrackView />
+          <ArtistView />
         </Stack>
 
         <chakra.div flex={1} />
       </Stack>
 
-      <chakra.div pos="fixed" top="30vh" left="65vw" flex={1}>
+      <chakra.div pos="fixed" top="30vh" left="70vw" flex={1}>
         <Stack spacing={4}>
           <Image boxSize="xs" src="/song.jpeg" alt="Song" />
 

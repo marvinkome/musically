@@ -18,4 +18,9 @@ export default extendTheme({
     body: "Poppins, sans-serif",
     heading: "Poppins, sans-serif",
   },
+
+  fontSizes: {
+    xs: "0.75rem",
+    sm: "13px",
+  },
 });

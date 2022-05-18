@@ -1,5 +1,4 @@
-import { chakra, Heading, HStack, IconButton, Select, VStack, Text, Image, Link } from "@chakra-ui/react";
-import { IoReload } from "react-icons/io5";
+import { chakra, Heading, HStack, VStack, Text, Image, Link } from "@chakra-ui/react";
 
 export function TrackView() {
   return (
@@ -8,26 +7,28 @@ export function TrackView() {
         <HStack spacing={4} alignItems="stretch">
           <Image boxSize={24} src="/song.jpeg" alt="Song" />
           <VStack alignItems="flex-start" spacing={1}>
-            <Heading fontWeight="600" fontSize="lg">
+            <Heading fontWeight="600" fontSize="xl">
               Bust
             </Heading>
 
-            <Text color="gray.500" fontSize="xs">
-              From the single{" "}
-              <Link fontWeight="500" color="gray.700">
-                How Dogs Chill, Vol.1{" "}
-              </Link>{" "}
-              (2018)
-            </Text>
+            <chakra.div>
+              <Text color="gray.500" fontSize="sm">
+                From the single{" "}
+                <Link fontWeight="500" color="gray.700">
+                  How Dogs Chill, Vol.1{" "}
+                </Link>{" "}
+                (2018)
+              </Text>
 
-            <Text color="gray.500" fontSize="xs">
-              By{" "}
-              <Link fontWeight="500" color="gray.700">
-                Mall Grab
-              </Link>
-            </Text>
+              <Text color="gray.500" fontSize="sm">
+                By{" "}
+                <Link fontWeight="500" color="gray.700">
+                  Mall Grab
+                </Link>
+              </Text>
+            </chakra.div>
 
-            <Link mt="auto !important" fontSize="xs" fontWeight="500" color="gray.700">
+            <Link mt="auto !important" fontSize="sm" fontWeight="500" color="gray.700">
               Recommended songs based on this
             </Link>
           </VStack>

@@ -13,7 +13,7 @@ export function PlaylistView() {
               <IconButton aria-label="refresh data" minW={5} h={5} ml={2} color="gray.500" rounded="full" icon={<IoReload />} />
             </Heading>
 
-            <Text color="gray.600" fontSize="xs">
+            <Text color="gray.600" fontSize="sm">
               This is Mall Grab. The essential tracks, all in one playlist.
             </Text>
           </VStack>

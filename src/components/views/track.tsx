@@ -1,6 +1,6 @@
 import { chakra, Heading, HStack, VStack, Text, Image, Link } from "@chakra-ui/react";
 
-export function TrackView() {
+export const TrackView = () => {
   return (
     <chakra.div bg="white" color="gray.800" shadow="base" p={4}>
       <HStack w="full" alignItems="flex-start" justifyContent="space-between">
@@ -40,4 +40,4 @@ export function TrackView() {
       </HStack>
     </chakra.div>
   );
-}
+};

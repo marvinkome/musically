@@ -4,6 +4,8 @@ import { Navigation } from "components/navigation";
 import { PlaylistView } from "components/views/playlist";
 import { TrackView } from "components/views/track";
 import { ArtistView } from "components/views/artist";
+import { AlbumView } from "components/views/album";
+import { Playlists } from "components/views/playlist-lists";
 
 const Page = () => {
   return (
@@ -22,9 +24,11 @@ const Page = () => {
 
       <Stack spacing={6} mt={14} direction="row" alignItems="flex-start">
         <Stack flex={3} spacing={6}>
-          <PlaylistView />
+          <Playlists />
+          {/* <PlaylistView />
           <TrackView />
           <ArtistView />
+          <AlbumView /> */}
         </Stack>
 
         <chakra.div flex={1} />

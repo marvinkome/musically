@@ -1,7 +1,7 @@
 import { chakra, HStack, VStack, Heading, IconButton, Select, Grid, GridItem, Text, Image } from "@chakra-ui/react";
 import { IoReload } from "react-icons/io5";
 
-export function PlaylistView() {
+export const PlaylistView = () => {
   return (
     <chakra.div bg="white" color="gray.800" shadow="base" p={4}>
       <HStack w="full" alignItems="flex-end" justifyContent="space-between">
@@ -56,4 +56,4 @@ export function PlaylistView() {
       </Grid>
     </chakra.div>
   );
-}
+};

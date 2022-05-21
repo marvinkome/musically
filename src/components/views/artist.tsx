@@ -1,6 +1,6 @@
 import { chakra, Grid, GridItem, Heading, HStack, Image, Link, SimpleGrid, Stack, Text, VStack } from "@chakra-ui/react";
 
-export function ArtistView() {
+export const ArtistView = () => {
   return (
     <chakra.div bg="white" color="gray.800" shadow="base" p={4}>
       <Stack direction="row" spacing={6}>
@@ -107,4 +107,4 @@ export function ArtistView() {
       </Stack>
     </chakra.div>
   );
-}
+};

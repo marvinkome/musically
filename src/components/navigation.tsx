@@ -1,30 +1,41 @@
 import { chakra, Stack, Button } from "@chakra-ui/react";
+import { Views } from "containers/main-page";
 
-export const Navigation = () => {
+export const Navigation = (props: { mainView: Views; setMainView: (view: Views) => void }) => {
   return (
     <chakra.aside w="full" rounded="20px" py={2}>
       <Stack direction="row" spacing={4}>
         <Stack spacing={2}>
-          <Button size="xs" justifyContent="flex-start">
+          <Button
+            size="xs"
+            justifyContent="flex-start"
+            colorScheme={props.mainView === Views.LikedSongs ? "pink" : undefined}
+            onClick={() => props.setMainView(Views.LikedSongs)}
+          >
             Your Liked Songs
           </Button>
-          <Button size="xs" justifyContent="flex-start">
-            Your Top Tracks
+          <Button
+            size="xs"
+            justifyContent="flex-start"
+            colorScheme={props.mainView === Views.Playlists ? "pink" : undefined}
+            onClick={() => props.setMainView(Views.Playlists)}
+          >
+            Your Playlists
           </Button>
         </Stack>
 
         <Stack spacing={2}>
-          <Button size="xs" justifyContent="flex-start">
-            Your Playlists
-          </Button>
           <Button size="xs" justifyContent="flex-start">
             Your Saved Albums
           </Button>
+          <Button size="xs" justifyContent="flex-start">
+            Your Followed Artists
+          </Button>
         </Stack>
 
         <Stack spacing={2}>
           <Button size="xs" justifyContent="flex-start">
-            Your Followed Artists
+            Your Top Tracks
           </Button>
           <Button size="xs" justifyContent="flex-start">
             Your Top Artists
@@ -33,10 +44,19 @@ export const Navigation = () => {
 
         <Stack spacing={2}>
           <Button size="xs" justifyContent="flex-start">
+            Discover Weekly
+          </Button>
+          <Button size="xs" justifyContent="flex-start">
+            Release Radar
+          </Button>
+        </Stack>
+
+        <Stack spacing={2}>
+          <Button size="xs" justifyContent="flex-start">
             Spotify Playlists
           </Button>
           <Button size="xs" justifyContent="flex-start">
-            Random Artist
+            Genres
           </Button>
         </Stack>
 
@@ -45,15 +65,7 @@ export const Navigation = () => {
             Random Genre
           </Button>
           <Button size="xs" justifyContent="flex-start">
-            Genres
-          </Button>
-        </Stack>
-        <Stack spacing={2}>
-          <Button size="xs" justifyContent="flex-start">
-            Discover Weekly
-          </Button>
-          <Button size="xs" justifyContent="flex-start">
-            Release Radar
+            Random Artist
           </Button>
         </Stack>
       </Stack>

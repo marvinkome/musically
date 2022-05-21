@@ -1,49 +1,32 @@
 import React from "react";
-import { Button, Container, Heading, Text } from "@chakra-ui/react";
-import PopupWindow, { toQuery } from "libs/popup-window";
-import { useRouter } from "next/router";
+import MainPage from "containers/main-page";
+import LandingPage from "containers/landing-page";
+
+enum PageView {
+  MainPage = "main-page",
+  LandingPage = "landing-page",
+}
 
 const Page = () => {
-  const router = useRouter();
-  const [isLoading, setLoading] = React.useState(false);
+  const [page, setPage] = React.useState<PageView | null>(null);
 
-  const spotifyLogin = async () => {
-    setLoading(true);
-
-    try {
-      const data = await PopupWindow.open(
-        "spotify-oauth-auth",
-        `https://accounts.spotify.com/authorize?${toQuery({
-          client_id: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID,
-          response_type: "token",
-          redirect_uri: encodeURIComponent(`${process.env.NEXT_PUBLIC_APP_URL}/`),
-          scope: "user-top-read",
-        })}`,
-        {
-          height: 800,
-          width: 600,
-        }
-      );
-
-      localStorage.setItem("spotify_token", JSON.stringify(data));
-      router.push("/liked-songs");
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoading(false);
+  React.useEffect(() => {
+    const spotifyToken = localStorage.getItem("spotify_token");
+    if (spotifyToken) {
+      setPage(PageView.MainPage);
+    } else {
+      setPage(PageView.LandingPage);
     }
+  }, []);
+
+  const onLogin = () => {
+    setPage(PageView.MainPage);
   };
 
-  return (
-    <Container py={20} textAlign="center">
-      <Heading>Musically</Heading>
-      <Text>Your interface for music discovery, powered by Spotify.</Text>
+  if (page === PageView.MainPage) return <MainPage />;
+  if (page === PageView.LandingPage) return <LandingPage onLogin={onLogin} />;
 
-      <Button mt={8} rounded="xl" onClick={() => spotifyLogin()} isLoading={isLoading}>
-        Log in with spotify
-      </Button>
-    </Container>
-  );
+  return null;
 };
 
 export default Page;

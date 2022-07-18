@@ -3,15 +3,18 @@ import { IoReload } from "react-icons/io5";
 import { useQuery } from "react-query";
 import { fetchUserLikedSongs } from "libs/api";
 
-export const LikedSongs = () => {
-  const likedSongQuery = useQuery({
+export const LikedSongs = ({ onMouseEnter, onMouseLeave }: any) => {
+  const query = useQuery({
     queryKey: ["liked-songs"],
-    queryFn: async () => fetchUserLikedSongs(),
+    queryFn: async () => {
+      const data = await fetchUserLikedSongs();
+      return data;
+    },
   });
 
   return (
     <chakra.div bg="white" color="gray.800" shadow="base" p={4}>
-      {likedSongQuery.isLoading ? (
+      {query.isLoading ? (
         <Stack direction="row" w="full" alignItems="flex-end" justifyContent="space-between">
           <Text fontWeight="normal" color="gray.500" fontSize="md">
             Loading tracks...
@@ -30,8 +33,8 @@ export const LikedSongs = () => {
                 color="gray.500"
                 rounded="full"
                 icon={<IoReload />}
-                isLoading={likedSongQuery.isFetching}
-                onClick={() => likedSongQuery.refetch()}
+                isLoading={query.isFetching}
+                onClick={() => query.refetch()}
               />
             </Heading>
 
@@ -64,8 +67,13 @@ export const LikedSongs = () => {
               },
             }}
           >
-            {(likedSongQuery.data || []).map((data, idx) => (
-              <GridItem key={data.track.id} cursor="pointer">
+            {(query.data || []).map((data, idx) => (
+              <GridItem
+                key={data.track.id}
+                cursor="pointer"
+                onMouseEnter={() => onMouseEnter(data.track)}
+                onMouseLeave={() => onMouseLeave()}
+              >
                 <Image src={data.track.album.images[0].url} alt={data.track.name} />
               </GridItem>
             ))}

@@ -1,4 +1,5 @@
 import React from "react";
+
 import { chakra, Container, Image, Heading, Stack, Text } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -9,6 +10,7 @@ import { ArtistView } from "components/views/artist";
 import { AlbumView } from "components/views/album";
 import { Playlists } from "components/views/playlist-lists";
 import { LikedSongs } from "components/views/liked-songs";
+import { ActiveTrack } from "components/active-track";
 
 export enum Views {
   LikedSongs = "liked-songs",
@@ -30,6 +32,15 @@ const queryClient = new QueryClient({
 
 const Page = () => {
   const [mainView, setMainView] = React.useState(Views.LikedSongs);
+  const [activeTrack, setActiveTrack] = React.useState<any>();
+
+  const handleMouseEnter = async (track: any) => {
+    setActiveTrack(track);
+  };
+
+  const handleMouseLeave = async () => {
+    setActiveTrack(undefined);
+  };
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -48,7 +59,7 @@ const Page = () => {
 
         <Stack spacing={6} mt={14} direction="row" alignItems="flex-start">
           <Stack flex={3} spacing={6}>
-            {mainView === Views.LikedSongs && <LikedSongs />}
+            {mainView === Views.LikedSongs && <LikedSongs onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />}
             {mainView === Views.Playlists && <Playlists />}
 
             {/* <PlaylistView />
@@ -60,29 +71,7 @@ const Page = () => {
           <chakra.div flex={1} />
         </Stack>
 
-        <chakra.div pos="fixed" top="30vh" left="70vw" flex={1}>
-          <Stack spacing={4}>
-            <Image boxSize="xs" src="/song.jpeg" alt="Song" />
-
-            <Stack spacing={1}>
-              <Text fontWeight="500" color="whiteAlpha.800">
-                Love Reigns
-              </Text>
-              <Text fontSize="sm" color="whiteAlpha.700">
-                Mall Grab
-              </Text>
-            </Stack>
-
-            <Stack spacing={1}>
-              <Text fontSize="xs" color="whiteAlpha.700">
-                The first track on the playlist:
-              </Text>
-              <Text fontWeight="500" fontSize="lg" color="whiteAlpha.900">
-                This Is Mall Grab
-              </Text>
-            </Stack>
-          </Stack>
-        </chakra.div>
+        {activeTrack && <ActiveTrack track={activeTrack} />}
       </Container>
 
       <ReactQueryDevtools />

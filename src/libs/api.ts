@@ -27,12 +27,14 @@ export async function fetchUserLikedSongs() {
       const { data } = await Api().get(link || `/me/tracks`, {
         params: {
           limit: 50,
+          market: "DE",
         },
       });
+
       return data;
     } catch (e: any) {
       console.error("SPOTIFY ERROR:: cannot get user liked songs data:", e.message);
-      return {};
+      throw e;
     }
   };
 

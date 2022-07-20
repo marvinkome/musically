@@ -14,7 +14,7 @@ const Page = ({ onLogin }: any) => {
         `https://accounts.spotify.com/authorize?${toQuery({
           client_id: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID,
           response_type: "token",
-          redirect_uri: encodeURIComponent(`${process.env.NEXT_PUBLIC_APP_URL}/`),
+          redirect_uri: process.env.NEXT_PUBLIC_APP_URL,
           scope: "user-top-read user-library-read",
         })}`,
         {
